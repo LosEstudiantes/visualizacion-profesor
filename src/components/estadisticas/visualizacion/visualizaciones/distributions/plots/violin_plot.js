@@ -30,6 +30,11 @@ class ViolinPlot extends Component {
 			margin_between_viz: 40,
 			duration_animation: 1300,
 			height_per_block: 30
+		},
+		colors: {
+			general: 'rgb(55, 126, 184)',
+			nota: 'rgb(77, 175, 74)',
+			dificultad: 'rgb(228, 26, 28)'
 		}
 	};
 
@@ -53,9 +58,9 @@ class ViolinPlot extends Component {
 		const distribucion_dificultad = distribucion(calificaciones, 'dificultad').reverse();
 
 		// Visualizacion
-		const inicial1 = this.renderBars(distribucion_general, 0);
-		const inicial2 = this.renderBars(distribucion_nota, 1);
-		const inicial3 = this.renderBars(distribucion_dificultad, 2);
+		const inicial1 = this.renderBars(distribucion_general, 0, 'general');
+		const inicial2 = this.renderBars(distribucion_nota, 1, 'nota');
+		const inicial3 = this.renderBars(distribucion_dificultad, 2, 'dificultad');
 
 		// Escala Y:
 		const yScale = d3
@@ -98,7 +103,7 @@ class ViolinPlot extends Component {
 			});
 	};
 
-	renderBars = (distribucion, order) => {
+	renderBars = (distribucion, order, atributo) => {
 		const { left } = this.state.margin;
 		const { width_per_viz, margin_between_viz } = this.state.distributions;
 		const xMax = d3.max(distribucion);
@@ -123,7 +128,7 @@ class ViolinPlot extends Component {
 			.attr('y', (d, i) => i * 32)
 			.attr('width', 0)
 			.attr('height', 30)
-			.attr('fill', 'steelblue')
+			.attr('fill', this.state.colors[atributo])
 			.transition()
 			.duration(1300)
 			.attr('x', c => inicial - xScale(c) / 2)

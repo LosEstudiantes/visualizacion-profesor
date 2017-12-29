@@ -34,13 +34,13 @@ class LineJoin extends Component {
 		const valores_general = this.ponerValoresCorrespondientes(calificaciones, 'general');
 		const valores_nota = this.ponerValoresCorrespondientes(calificaciones, 'nota');
 		const valores_dificultad = this.ponerValoresCorrespondientes(calificaciones, 'dificultad');
-		console.log(valores_general);
+		// console.log(valores_general);
 
 		const valores_general_reducidos = this.reducirValores(valores_general, 'nota');
 		// const valores_nota_reducidos = this.reducirValores(valores_nota, 'dificultad');
 		// const valores_dificultad_reducidos = this.reducirValores(valores_dificultad, 'nota');
 
-		console.log(valores_general_reducidos);
+		// console.log(valores_general_reducidos);
 
 		valores_general_reducidos.map((valores_bloque, indice) => {
 			valores_bloque.map(calificacion => {
